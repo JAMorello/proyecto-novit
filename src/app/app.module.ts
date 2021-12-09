@@ -14,6 +14,8 @@ import { InicioComponent } from './pages/inicio/inicio.component';
 
 // components
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { SectionHeaderComponent } from './components/section-header/section-header.component';
+import { CardComponent } from './components/card/card.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,6 +24,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     RecursosComponent,
     InicioComponent,
     NavbarComponent,
+    SectionHeaderComponent,
+    CardComponent,
   ],
   imports: [
     BrowserModule,
