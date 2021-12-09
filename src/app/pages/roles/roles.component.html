@@ -1,1 +1,9 @@
-<p>roles works!</p>
+<app-section-header title="Roles"></app-section-header>
+<div class="container">
+  <app-card
+    *ngFor="let rol of roles"
+    origen="roles"
+    [nombre]="rol.nombre"
+    [estado]="rol.estado"
+  ></app-card>
+</div>
