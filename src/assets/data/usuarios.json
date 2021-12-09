@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "nombre": "Juan",
+    "apellido": "Morello",
+    "username": "JAMorello",
+    "password": "12345",
+    "email": "juan.ag.morello@blabla.com",
+    "estado": true
+  },
+  {
+    "id": 2,
+    "nombre": "Missing",
+    "apellido": "Name",
+    "username": "NoName",
+    "password": "asdf",
+    "email": "testuser@blabla.com",
+    "estado": false
+  },
+  {
+    "id": 3,
+    "nombre": "Test",
+    "apellido": "User",
+    "username": "TestUser",
+    "password": "qwerty",
+    "email": "qwerty@blabla.com",
+    "estado": true
+  }
+]

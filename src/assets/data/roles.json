@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "nombre": "Administrador",
+    "estado": true
+  },
+  {
+    "id": 2,
+    "nombre": "Colaborador",
+    "estado": true
+  },
+  {
+    "id": 3,
+    "nombre": "Voluntario",
+    "estado": false
+  }
+]

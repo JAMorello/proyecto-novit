@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "nombre": "Pizza",
+    "estado": true
+  },
+  {
+    "id": 2,
+    "nombre": "Piedras",
+    "estado": true
+  },
+  {
+    "id": 3,
+    "nombre": "Aire",
+    "estado": false
+  }
+]
