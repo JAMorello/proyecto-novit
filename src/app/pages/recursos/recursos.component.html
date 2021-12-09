@@ -1,1 +1,9 @@
-<p>recursos works!</p>
+<app-section-header title="Recursos"></app-section-header>
+<div class="container">
+  <app-card
+    *ngFor="let recurso of recursos"
+    origen="recursos"
+    [nombre]="recurso.nombre"
+    [estado]="recurso.estado"
+  ></app-card>
+</div>
