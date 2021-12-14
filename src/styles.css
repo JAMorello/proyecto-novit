@@ -13,3 +13,21 @@ body {
   margin-right: 150px;
   margin-top: 15px;
 }
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.radio-group {
+  display: flex;
+  margin: 15px 0;
+}
+
+.radio-button {
+  margin: 5px;
+}
+
+.edit-button {
+  background-color: #fbc02d;
+  color: black;
+}
