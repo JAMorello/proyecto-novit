@@ -15,6 +15,7 @@ export class UsuariosComponent implements OnInit {
     'Password',
     'Email',
     'Estado',
+    'Acciones',
   ];
 
   constructor(private _usuariosService: UsuariosService) {}

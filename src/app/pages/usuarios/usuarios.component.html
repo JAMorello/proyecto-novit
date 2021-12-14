@@ -32,9 +32,50 @@
 
   <!-- Columna "Estado" -->
   <ng-container matColumnDef="Estado">
-    <th mat-header-cell *matHeaderCellDef style="text-align: right">Estado</th>
-    <td mat-cell *matCellDef="let element" style="text-align: right">
-      {{ element.estado }}
+    <th mat-header-cell *matHeaderCellDef style="text-align: center">Estado</th>
+    <td mat-cell *matCellDef="let element" style="text-align: center">
+      <mat-icon
+        *ngIf="element.estado; else elseBlock"
+        aria-hidden="false"
+        aria-label="True"
+        matTooltip="True"
+        style="color: #43a047"
+        >thumb_up</mat-icon
+      >
+      <ng-template #elseBlock>
+        <mat-icon
+          aria-hidden="false"
+          aria-label="False"
+          color="warn"
+          matTooltip="False"
+          >thumb_down</mat-icon
+        >
+      </ng-template>
+    </td>
+  </ng-container>
+
+  <!-- Columna "Acciones" -->
+  <ng-container matColumnDef="Acciones">
+    <th mat-header-cell *matHeaderCellDef style="text-align: center">
+      Acciones
+    </th>
+    <td mat-cell *matCellDef="let element" style="text-align: center">
+      <button
+        mat-icon-button
+        style="color: #fbc02d"
+        aria-label="Edit icon"
+        matTooltip="Editar usario"
+      >
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button
+        mat-icon-button
+        color="warn"
+        aria-label="Delete icon"
+        matTooltip="Eliminar usuario"
+      >
+        <mat-icon>delete</mat-icon>
+      </button>
     </td>
   </ng-container>
 
