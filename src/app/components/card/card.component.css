@@ -5,6 +5,12 @@
   vertical-align: top;
 }
 
+.edit-button {
+  background-color: #fbc02d;
+  color: black;
+  margin-right: 10px;
+}
+
 .recurso-disponible {
   background-image: "assets/img/recurso-disponible.png";
   background-size: cover;
