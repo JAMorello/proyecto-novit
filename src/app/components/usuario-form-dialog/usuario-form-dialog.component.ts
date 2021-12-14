@@ -1,7 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Usuario } from 'src/app/model/usuario';
 
 @Component({
   selector: 'app-usuario-form-dialog',
@@ -12,16 +11,17 @@ export class UsuarioFormDialogComponent implements OnInit {
   formValues: FormGroup;
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: Usuario,
+    @Inject(MAT_DIALOG_DATA) public data: any,
     public fb: FormBuilder
   ) {
+    const values = this.data.payload;
     this.formValues = this.fb.group({
-      nombre: [this.data.nombre, Validators.required],
-      apellido: [this.data.apellido, Validators.required],
-      username: [this.data.username, Validators.required],
-      password: [this.data.password, Validators.required],
-      email: [this.data.email, Validators.required],
-      estado: [String(this.data.estado).toLowerCase(), Validators.required],
+      nombre: [values.nombre, Validators.required],
+      apellido: [values.apellido, Validators.required],
+      username: [values.username, Validators.required],
+      password: [values.password, Validators.required],
+      email: [values.email, Validators.required],
+      estado: [String(values.estado).toLowerCase(), Validators.required],
     });
   }
 

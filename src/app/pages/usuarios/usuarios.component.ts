@@ -39,7 +39,10 @@ export class UsuariosComponent implements OnInit {
     this.matDialog.open(UsuarioFormDialogComponent, {
       width: '700px',
       height: '400px',
-      data: payload,
+      data: {
+        payload: payload,
+        action: 'editar',
+      },
     });
   }
 }

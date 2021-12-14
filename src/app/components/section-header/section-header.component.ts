@@ -36,13 +36,16 @@ export class SectionHeaderComponent implements OnInit {
       width: '700px',
       height: '400px',
       data: {
-        id: 0,
-        nombre: '',
-        apellido: '',
-        username: '',
-        password: '',
-        email: '',
-        estado: true,
+        payload: {
+          id: 0,
+          nombre: '',
+          apellido: '',
+          username: '',
+          password: '',
+          email: '',
+          estado: true,
+        },
+        action: 'guardar',
       },
     });
   }

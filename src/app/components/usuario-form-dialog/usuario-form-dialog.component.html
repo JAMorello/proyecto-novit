@@ -1,5 +1,7 @@
 <form [formGroup]="formValues" (ngSubmit)="onSubmit()">
-  <h1 mat-dialog-title>Agregar Usuario</h1>
+  <h1 mat-dialog-title>
+    {{ data.action === "guardar" ? "Agregar" : "Editar" }} Usuario
+  </h1>
   <div mat-dialog-content>
     <mat-grid-list cols="3" rowHeight="80px">
       <mat-grid-tile colspan="1" rowspan="1">
@@ -95,7 +97,16 @@
   </div>
 
   <div mat-dialog-actions align="center">
-    <button mat-raised-button color="primary">Guardar</button>
+    <button *ngIf="data.action === 'guardar'" mat-raised-button color="primary">
+      Guardar
+    </button>
+    <button
+      *ngIf="data.action === 'editar'"
+      mat-raised-button
+      class="edit-button"
+    >
+      Editar
+    </button>
     <button mat-raised-button mat-dialog-close color="accent">Cancelar</button>
   </div>
 </form>
