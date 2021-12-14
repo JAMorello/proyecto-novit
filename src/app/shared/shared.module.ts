@@ -12,6 +12,9 @@ import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatInputModule } from '@angular/material/input';
+import { MatRadioModule } from '@angular/material/radio';
 
 @NgModule({
   declarations: [],
@@ -25,6 +28,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatGridListModule,
     MatIconModule,
     MatTooltipModule,
+    MatDialogModule,
+    MatInputModule,
+    MatRadioModule,
   ],
   exports: [
     HttpClientModule,
@@ -35,6 +41,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatGridListModule,
     MatIconModule,
     MatTooltipModule,
+    MatDialogModule,
+    MatInputModule,
+    MatRadioModule,
   ],
 })
 export class SharedModule {}
