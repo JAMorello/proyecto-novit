@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuariosService } from 'src/app/services/usuarios.service';
 import { Usuario } from 'src/app/model/usuario';
+import { MatDialog } from '@angular/material/dialog';
+import { UsuarioFormDialogComponent } from 'src/app/components/usuario-form-dialog/usuario-form-dialog.component';
 @Component({
   selector: 'app-usuarios',
   templateUrl: './usuarios.component.html',
@@ -18,7 +20,10 @@ export class UsuariosComponent implements OnInit {
     'Acciones',
   ];
 
-  constructor(private _usuariosService: UsuariosService) {}
+  constructor(
+    private _usuariosService: UsuariosService,
+    private matDialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.cargarUsuarios();
@@ -28,5 +33,13 @@ export class UsuariosComponent implements OnInit {
     this._usuariosService
       .getUsuarios()
       .subscribe((data) => (this.usuarios = data));
+  }
+
+  openUsuarioDialog(payload: Usuario) {
+    this.matDialog.open(UsuarioFormDialogComponent, {
+      width: '700px',
+      height: '400px',
+      data: payload,
+    });
   }
 }

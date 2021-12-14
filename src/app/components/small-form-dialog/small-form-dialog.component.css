@@ -6,3 +6,8 @@
 .radio-button {
   margin: 5px;
 }
+
+.edit-button {
+  background-color: #fbc02d;
+  color: black;
+}

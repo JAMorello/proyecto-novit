@@ -2,16 +2,18 @@
   <mat-card-header>
     <div mat-card-avatar>
       <img
-        src="../assets/img/{{ getImg(estado) }}.png"
+        src="../assets/img/{{ getImg(data.estado) }}.png"
         width="50px"
         height="50px"
       />
     </div>
-    <mat-card-title>{{ nombre }}</mat-card-title>
-    <mat-card-subtitle>Estado: {{ estado }}</mat-card-subtitle>
+    <mat-card-title>{{ data.nombre }}</mat-card-title>
+    <mat-card-subtitle>Estado: {{ data.estado }}</mat-card-subtitle>
   </mat-card-header>
   <mat-card-actions align="end">
-    <button mat-flat-button class="edit-button">Editar</button>
+    <button mat-flat-button class="edit-button" (click)="openSmallDialog(data)">
+      Editar
+    </button>
     <button mat-flat-button color="warn">Eliminar</button>
   </mat-card-actions>
 </mat-card>

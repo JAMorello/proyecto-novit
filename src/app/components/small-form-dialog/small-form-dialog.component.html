@@ -2,7 +2,10 @@
   <div mat-dialog-content>
     <mat-grid-list cols="2" rowHeight="50px">
       <mat-grid-tile colspan="1" rowspan="1">
-        <h1>Agregar {{ data.title }}</h1>
+        <h1>
+          {{ data.action === "guardar" ? "Agregar" : "Editar" }}
+          {{ data.title }}
+        </h1>
       </mat-grid-tile>
 
       <mat-grid-tile colspan="1" rowspan="3">
@@ -30,15 +33,15 @@
       <mat-grid-tile colspan="1" rowspan="1">
         <label id="radio-group-label">Estado:</label>
         <mat-radio-group
+          formControlName="estado"
           aria-labelledby="radio-group-label"
           class="radio-group"
-          formControlName="estado"
           required
         >
-          <mat-radio-button class="radio-button" value="1"
+          <mat-radio-button class="radio-button" value="true"
             >True</mat-radio-button
           >
-          <mat-radio-button class="radio-button" value="2"
+          <mat-radio-button class="radio-button" value="false"
             >False</mat-radio-button
           >
         </mat-radio-group>
@@ -47,7 +50,16 @@
   </div>
 
   <div mat-dialog-actions align="center">
-    <button mat-raised-button color="primary">Guardar</button>
+    <button *ngIf="data.action === 'guardar'" mat-raised-button color="primary">
+      Guardar
+    </button>
+    <button
+      *ngIf="data.action === 'editar'"
+      mat-raised-button
+      class="edit-button"
+    >
+      Editar
+    </button>
     <button mat-raised-button mat-dialog-close color="accent">Cancelar</button>
   </div>
 </form>

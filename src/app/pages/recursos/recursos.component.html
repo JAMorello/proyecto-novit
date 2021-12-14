@@ -3,7 +3,6 @@
   <app-card
     *ngFor="let recurso of recursos"
     origen="recursos"
-    [nombre]="recurso.nombre"
-    [estado]="recurso.estado"
+    [data]="recurso"
   ></app-card>
 </div>

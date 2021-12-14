@@ -21,7 +21,7 @@ export class UsuarioFormDialogComponent implements OnInit {
       username: [this.data.username, Validators.required],
       password: [this.data.password, Validators.required],
       email: [this.data.email, Validators.required],
-      estado: [this.data.estado, Validators.required],
+      estado: [String(this.data.estado).toLowerCase(), Validators.required],
     });
   }
 

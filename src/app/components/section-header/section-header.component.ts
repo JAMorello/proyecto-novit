@@ -23,8 +23,10 @@ export class SectionHeaderComponent implements OnInit {
         payload: {
           id: 0,
           nombre: '',
+          estado: true,
         },
         title: this.title === 'Roles' ? 'Rol' : 'Recurso',
+        action: 'guardar',
       },
     });
   }
@@ -40,7 +42,7 @@ export class SectionHeaderComponent implements OnInit {
         username: '',
         password: '',
         email: '',
-        estado: '',
+        estado: true,
       },
     });
   }

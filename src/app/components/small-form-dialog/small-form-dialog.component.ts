@@ -17,7 +17,7 @@ export class SmallFormDialogComponent implements OnInit {
     const values = this.data.payload;
     this.formValues = this.fb.group({
       nombre: [values.nombre, Validators.required],
-      estado: [values.estado, Validators.required],
+      estado: [String(values.estado).toLowerCase(), Validators.required],
     });
   }
 
@@ -27,5 +27,7 @@ export class SmallFormDialogComponent implements OnInit {
     return this.data.title === 'Rol' ? 'roles' : 'recursos';
   }
 
-  onSubmit() {}
+  onSubmit() {
+    console.log(this.formValues);
+  }
 }
