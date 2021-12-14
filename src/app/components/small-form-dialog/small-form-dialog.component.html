@@ -1,0 +1,53 @@
+<form [formGroup]="formValues" (ngSubmit)="onSubmit()">
+  <div mat-dialog-content>
+    <mat-grid-list cols="2" rowHeight="50px">
+      <mat-grid-tile colspan="1" rowspan="1">
+        <h1>Agregar {{ data.title }}</h1>
+      </mat-grid-tile>
+
+      <mat-grid-tile colspan="1" rowspan="3">
+        <img
+          src="../assets/img/{{ getImg() }}.png"
+          width="150px"
+          height="150px"
+        />
+      </mat-grid-tile>
+
+      <mat-grid-tile colspan="1" rowspan="1">
+        <mat-form-field appearance="fill">
+          <mat-label>Nombre</mat-label>
+          <input
+            matInput
+            type="text"
+            name="form-name"
+            formControlName="nombre"
+            autocomplete="disabled"
+            required
+          />
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile colspan="1" rowspan="1">
+        <label id="radio-group-label">Estado:</label>
+        <mat-radio-group
+          aria-labelledby="radio-group-label"
+          class="radio-group"
+          formControlName="estado"
+          required
+        >
+          <mat-radio-button class="radio-button" value="1"
+            >True</mat-radio-button
+          >
+          <mat-radio-button class="radio-button" value="2"
+            >False</mat-radio-button
+          >
+        </mat-radio-group>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+
+  <div mat-dialog-actions align="center">
+    <button mat-raised-button color="primary">Guardar</button>
+    <button mat-raised-button mat-dialog-close color="accent">Cancelar</button>
+  </div>
+</form>

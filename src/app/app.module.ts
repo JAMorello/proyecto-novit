@@ -5,6 +5,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
 // pages
 import { UsuariosComponent } from './pages/usuarios/usuarios.component';
@@ -16,6 +19,8 @@ import { InicioComponent } from './pages/inicio/inicio.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SectionHeaderComponent } from './components/section-header/section-header.component';
 import { CardComponent } from './components/card/card.component';
+import { UsuarioFormDialogComponent } from './components/usuario-form-dialog/usuario-form-dialog.component';
+import { SmallFormDialogComponent } from './components/small-form-dialog/small-form-dialog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,12 +31,17 @@ import { CardComponent } from './components/card/card.component';
     NavbarComponent,
     SectionHeaderComponent,
     CardComponent,
+    UsuarioFormDialogComponent,
+    SmallFormDialogComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     SharedModule,
+    FormsModule,
+    HttpClientModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

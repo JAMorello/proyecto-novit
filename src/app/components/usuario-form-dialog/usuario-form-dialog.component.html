@@ -1,0 +1,101 @@
+<form [formGroup]="formValues" (ngSubmit)="onSubmit()">
+  <h1 mat-dialog-title>Agregar Usuario</h1>
+  <div mat-dialog-content>
+    <mat-grid-list cols="3" rowHeight="80px">
+      <mat-grid-tile colspan="1" rowspan="1">
+        <mat-form-field appearance="fill">
+          <mat-label>Nombre</mat-label>
+          <input
+            matInput
+            type="text"
+            name="form-name"
+            formControlName="nombre"
+            autocomplete="disabled"
+            required
+          />
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile colspan="1" rowspan="1">
+        <mat-form-field appearance="fill">
+          <mat-label>Apellido</mat-label>
+          <input
+            matInput
+            type="text"
+            formControlName="apellido"
+            autocomplete="disabled"
+            required
+          />
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile colspan="1" rowspan="3">
+        <img src="../assets/img/usuarios.png" width="200px" height="200px" />
+      </mat-grid-tile>
+
+      <mat-grid-tile colspan="1" rowspan="1">
+        <mat-form-field appearance="fill">
+          <mat-label>Username</mat-label>
+          <input
+            matInput
+            type="text"
+            name="form-usuario"
+            formControlName="username"
+            autocomplete="disabled"
+            required
+          />
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile colspan="1" rowspan="1">
+        <mat-form-field appearance="fill">
+          <mat-label>Password</mat-label>
+          <input
+            matInput
+            type="text"
+            name="contraseña"
+            formControlName="password"
+            autocomplete="disabled"
+            required
+          />
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile colspan="1" rowspan="1">
+        <mat-form-field appearance="fill">
+          <mat-label>Email</mat-label>
+          <input
+            matInput
+            type="email"
+            name="correo electronico"
+            formControlName="email"
+            autocomplete="disabled"
+            required
+          />
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile colspan="1" rowspan="1">
+        <label id="radio-group-label">Estado:</label>
+        <mat-radio-group
+          aria-labelledby="radio-group-label"
+          class="radio-group"
+          formControlName="estado"
+          required
+        >
+          <mat-radio-button class="radio-button" value="1"
+            >True</mat-radio-button
+          >
+          <mat-radio-button class="radio-button" value="2"
+            >False</mat-radio-button
+          >
+        </mat-radio-group>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+
+  <div mat-dialog-actions align="center">
+    <button mat-raised-button color="primary">Guardar</button>
+    <button mat-raised-button mat-dialog-close color="accent">Cancelar</button>
+  </div>
+</form>

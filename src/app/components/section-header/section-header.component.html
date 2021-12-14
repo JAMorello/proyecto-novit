@@ -2,6 +2,31 @@
   <mat-toolbar color="accent">
     <span>{{ title }}</span>
     <div class="spacer"></div>
-    <button mat-raised-button color="primary">Agregar</button>
+    <div [ngSwitch]="title">
+      <button
+        *ngSwitchCase="'Usuarios'"
+        mat-raised-button
+        color="primary"
+        (click)="openUsuarioDialog()"
+      >
+        Agregar usuario
+      </button>
+      <button
+        *ngSwitchCase="'Roles'"
+        mat-raised-button
+        color="primary"
+        (click)="openSmallDialog()"
+      >
+        Agregar rol
+      </button>
+      <button
+        *ngSwitchCase="'Recursos'"
+        mat-raised-button
+        color="primary"
+        (click)="openSmallDialog()"
+      >
+        Agregar recurso
+      </button>
+    </div>
   </mat-toolbar>
 </div>
