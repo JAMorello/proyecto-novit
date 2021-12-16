@@ -38,3 +38,13 @@ body {
   background-color: #fbc02d;
   color: black;
 }
+
+.error.mat-snack-bar-container {
+  background-color: #e53935;
+  color: white;
+}
+
+.éxito.mat-snack-bar-container {
+  background-color: #558b2f;
+  color: white;
+}
