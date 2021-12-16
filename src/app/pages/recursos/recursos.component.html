@@ -1,8 +1,18 @@
-<app-section-header title="Recursos"></app-section-header>
-<div class="container">
-  <app-card
-    *ngFor="let recurso of recursos"
-    origen="recursos"
-    [data]="recurso"
-  ></app-card>
+<app-section-header
+  title="Recursos"
+  (createEvent)="createRecurso($event)"
+></app-section-header>
+<div class="spinner-container" *ngIf="loading; else showData">
+  <mat-spinner class="center"></mat-spinner>
 </div>
+<ng-template #showData>
+  <div class="container">
+    <app-card
+      *ngFor="let recurso of recursos"
+      origen="recursos"
+      [data]="recurso"
+      (updateEvent)="updateRecurso($event)"
+      (deleteEvent)="deleteRecurso($event)"
+    ></app-card>
+  </div>
+</ng-template>

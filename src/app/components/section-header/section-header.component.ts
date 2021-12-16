@@ -60,7 +60,7 @@ export class SectionHeaderComponent implements OnInit {
   }
 
   openUsuarioDialog() {
-    this.matDialog.open(UsuarioFormDialogComponent, {
+    let dialogRef = this.matDialog.open(UsuarioFormDialogComponent, {
       width: '700px',
       height: '400px',
       data: {
@@ -75,6 +75,21 @@ export class SectionHeaderComponent implements OnInit {
         },
         action: 'guardar',
       },
+    });
+
+    dialogRef.afterClosed().subscribe((formValues) => {
+      if (formValues) {
+        const newUsuario: Usuario = {
+          idUsuario: Math.floor(Math.random() * 2147483647) + 1,
+          nombre: formValues.value.nombre,
+          apellido: formValues.value.apellido,
+          username: formValues.value.username,
+          password: formValues.value.password,
+          email: formValues.value.email,
+          estado: formValues.value.estado === 'true',
+        };
+        this.createItem(newUsuario);
+      }
     });
   }
 }

@@ -71,10 +71,9 @@ export class RolesComponent implements OnInit {
   deleteRol(id: number) {
     this.loading = true;
     this._rolesService.deleteRol(id).subscribe({
-      next: (data) => {
-        console.log(data);
+      next: (_) => {
         this.notifierService.showNotification(
-          'Se ha eliminado el rol con id [${id}] correctamente',
+          `Se ha eliminado el rol con id [${id}] correctamente`,
           'éxito'
         );
         this.getRoles();

@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-usuario-form-dialog',
@@ -12,6 +12,7 @@ export class UsuarioFormDialogComponent implements OnInit {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
+    private matDialogRef: MatDialogRef<UsuarioFormDialogComponent>,
     public fb: FormBuilder
   ) {
     const values = this.data.payload;
@@ -27,5 +28,10 @@ export class UsuarioFormDialogComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  onSubmit() {}
+  onSubmit() {
+    if (this.formValues.status === 'VALID') {
+      this.matDialogRef.close(this.formValues);
+    }
+    // TODO: WARNING MESSAGGE
+  }
 }
