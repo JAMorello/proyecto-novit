@@ -2,12 +2,17 @@
   title="Roles"
   (createEvent)="createRol($event)"
 ></app-section-header>
-<div class="container">
-  <app-card
-    *ngFor="let rol of roles"
-    origen="roles"
-    [data]="rol"
-    (updateEvent)="updateRol($event)"
-    (deleteEvent)="deleteRol($event)"
-  ></app-card>
+<div class="spinner-container" *ngIf="loading; else showData">
+  <mat-spinner class="center"></mat-spinner>
 </div>
+<ng-template #showData>
+  <div class="container">
+    <app-card
+      *ngFor="let rol of roles"
+      origen="roles"
+      [data]="rol"
+      (updateEvent)="updateRol($event)"
+      (deleteEvent)="deleteRol($event)"
+    ></app-card>
+  </div>
+</ng-template>

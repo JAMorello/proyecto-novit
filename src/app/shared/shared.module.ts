@@ -15,6 +15,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [],
@@ -31,6 +32,7 @@ import { MatRadioModule } from '@angular/material/radio';
     MatDialogModule,
     MatInputModule,
     MatRadioModule,
+    MatProgressSpinnerModule,
   ],
   exports: [
     HttpClientModule,
@@ -44,6 +46,7 @@ import { MatRadioModule } from '@angular/material/radio';
     MatDialogModule,
     MatInputModule,
     MatRadioModule,
+    MatProgressSpinnerModule,
   ],
 })
 export class SharedModule {}

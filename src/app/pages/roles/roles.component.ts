@@ -8,6 +8,7 @@ import { Rol } from 'src/app/model/rol';
 })
 export class RolesComponent implements OnInit {
   roles: Rol[] = [];
+  loading: boolean = true;
 
   constructor(private _rolesService: RolesService) {}
 
@@ -16,7 +17,11 @@ export class RolesComponent implements OnInit {
   }
 
   getRoles() {
-    this._rolesService.getRoles().subscribe((data) => (this.roles = data));
+    this.loading = true;
+    this._rolesService.getRoles().subscribe((data) => {
+      this.roles = data;
+      this.loading = false;
+    });
   }
 
   createRol(rol: Rol) {
@@ -28,6 +33,9 @@ export class RolesComponent implements OnInit {
   }
 
   deleteRol(id: number) {
-    this._rolesService.deleteRol(id).subscribe((data) => console.log(data));
+    this._rolesService.deleteRol(id).subscribe((data) => {
+      console.log(data);
+      this.getRoles();
+    });
   }
 }
