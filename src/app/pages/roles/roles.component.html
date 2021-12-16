@@ -1,4 +1,13 @@
-<app-section-header title="Roles"></app-section-header>
+<app-section-header
+  title="Roles"
+  (createEvent)="createRol($event)"
+></app-section-header>
 <div class="container">
-  <app-card *ngFor="let rol of roles" origen="roles" [data]="rol"></app-card>
+  <app-card
+    *ngFor="let rol of roles"
+    origen="roles"
+    [data]="rol"
+    (updateEvent)="updateRol($event)"
+    (deleteEvent)="deleteRol($event)"
+  ></app-card>
 </div>

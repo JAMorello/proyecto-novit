@@ -12,10 +12,22 @@ export class RolesComponent implements OnInit {
   constructor(private _rolesService: RolesService) {}
 
   ngOnInit(): void {
-    this.cargarRoles();
+    this.getRoles();
   }
 
-  cargarRoles() {
+  getRoles() {
     this._rolesService.getRoles().subscribe((data) => (this.roles = data));
+  }
+
+  createRol(rol: Rol) {
+    this._rolesService.createRol(rol).subscribe((_) => this.getRoles());
+  }
+
+  updateRol(rol: Rol) {
+    this._rolesService.updateRol(rol).subscribe((_) => this.getRoles());
+  }
+
+  deleteRol(id: number) {
+    this._rolesService.deleteRol(id).subscribe((data) => console.log(data));
   }
 }

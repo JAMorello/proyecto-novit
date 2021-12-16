@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Rol } from 'src/app/model/rol';
 
 @Component({
   selector: 'app-small-form-dialog',
@@ -12,6 +13,7 @@ export class SmallFormDialogComponent implements OnInit {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
+    private matDialogRef: MatDialogRef<SmallFormDialogComponent>,
     public fb: FormBuilder
   ) {
     const values = this.data.payload;
@@ -28,6 +30,10 @@ export class SmallFormDialogComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.formValues);
+    if (this.formValues.status === 'VALID') {
+      this.matDialogRef.close(this.formValues);
+    }
+
+    // TODO: WARNING MESSAGGE
   }
 }

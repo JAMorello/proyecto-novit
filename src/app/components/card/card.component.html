@@ -18,6 +18,12 @@
     >
       Editar
     </button>
-    <button mat-flat-button color="warn">Eliminar</button>
+    <button
+      mat-flat-button
+      color="warn"
+      (click)="deleteItem(getIDofElement(data))"
+    >
+      Eliminar
+    </button>
   </mat-card-actions>
 </mat-card>
