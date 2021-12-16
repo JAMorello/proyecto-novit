@@ -21,7 +21,6 @@ import { SectionHeaderComponent } from './components/section-header/section-head
 import { CardComponent } from './components/card/card.component';
 import { UsuarioFormDialogComponent } from './components/usuario-form-dialog/usuario-form-dialog.component';
 import { SmallFormDialogComponent } from './components/small-form-dialog/small-form-dialog.component';
-import { NotifierComponent } from './components/notifier/notifier.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +33,6 @@ import { NotifierComponent } from './components/notifier/notifier.component';
     CardComponent,
     UsuarioFormDialogComponent,
     SmallFormDialogComponent,
-    NotifierComponent,
   ],
   imports: [
     BrowserModule,
