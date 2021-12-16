@@ -34,7 +34,6 @@ export class CardComponent implements OnInit {
   }
 
   deleteItem(id: number) {
-    // TODO: FIX ERROR IN BACKEND
     this.deleteEvent.emit(id);
   }
 
