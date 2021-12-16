@@ -1,0 +1,14 @@
+<div style="display: flex; align-items: center">
+  <div>
+    <h3>{{ data.msgType | titlecase }}</h3>
+    <p>{{ data.text }}</p>
+  </div>
+  <div class="spacer"></div>
+  <button
+    mat-stroked-button
+    style="background-color: white; color: black"
+    (click)="snackBarRef.dismiss()"
+  >
+    Ok
+  </button>
+</div>
