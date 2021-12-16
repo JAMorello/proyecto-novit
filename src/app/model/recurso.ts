@@ -1,5 +1,5 @@
 export interface Recurso {
-  id: number;
+  idRecurso: number;
   nombre: string;
   estado: boolean;
 }
