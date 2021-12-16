@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Rol } from 'src/app/model/rol';
+import { NotifierService } from 'src/app/services/notifier.service';
 
 @Component({
   selector: 'app-small-form-dialog',
@@ -14,7 +15,8 @@ export class SmallFormDialogComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private matDialogRef: MatDialogRef<SmallFormDialogComponent>,
-    public fb: FormBuilder
+    public fb: FormBuilder,
+    private notifierService: NotifierService
   ) {
     const values = this.data.payload;
     this.formValues = this.fb.group({
@@ -32,8 +34,11 @@ export class SmallFormDialogComponent implements OnInit {
   onSubmit() {
     if (this.formValues.status === 'VALID') {
       this.matDialogRef.close(this.formValues);
+    } else {
+      this.notifierService.showNotification(
+        'No has completado los campos correctamente',
+        'error'
+      );
     }
-
-    // TODO: WARNING MESSAGGE
   }
 }
