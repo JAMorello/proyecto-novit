@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { JwtService } from './jwt.service';
 import { Rol } from '../model/rol';
@@ -46,9 +45,9 @@ export class RolesService {
   }
 
   deleteRol(id: number) {
-    return this.http.delete<Rol>(
-      `${this.baseUrl}/Delete/${id}`,
-      this.generateHeaders()
-    );
+    return this.http.delete(`${this.baseUrl}/Delete/${id}`, {
+      ...this.generateHeaders(),
+      responseType: 'text',
+    });
   }
 }
