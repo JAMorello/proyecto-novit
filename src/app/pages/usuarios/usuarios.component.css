@@ -1,7 +1,13 @@
-table {
+/* .table-container {
   margin-left: 150px;
   margin-right: 150px;
   margin-top: 15px;
+  display: flex;
+  justify-content: center;
+} */
+
+table {
+  width: 100%;
 }
 
 th {
