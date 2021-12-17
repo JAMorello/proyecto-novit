@@ -1,4 +1,4 @@
-<mat-card class="card">
+<mat-card class="card" color="primary">
   <mat-card-header>
     <div mat-card-avatar>
       <img
@@ -8,7 +8,9 @@
       />
     </div>
     <mat-card-title>{{ data.nombre }}</mat-card-title>
-    <mat-card-subtitle>Estado: {{ data.estado }}</mat-card-subtitle>
+    <mat-card-subtitle style="color: gray"
+      >Estado: {{ data.estado }}</mat-card-subtitle
+    >
   </mat-card-header>
   <mat-card-actions align="end">
     <button

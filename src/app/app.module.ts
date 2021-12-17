@@ -21,6 +21,7 @@ import { SectionHeaderComponent } from './components/section-header/section-head
 import { CardComponent } from './components/card/card.component';
 import { UsuarioFormDialogComponent } from './components/usuario-form-dialog/usuario-form-dialog.component';
 import { SmallFormDialogComponent } from './components/small-form-dialog/small-form-dialog.component';
+import { MAT_RADIO_DEFAULT_OPTIONS } from '@angular/material/radio';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +44,12 @@ import { SmallFormDialogComponent } from './components/small-form-dialog/small-f
     HttpClientModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: MAT_RADIO_DEFAULT_OPTIONS,
+      useValue: { color: 'primary' },
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
