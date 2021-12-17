@@ -17,6 +17,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [],
@@ -35,6 +37,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatRadioModule,
     MatProgressSpinnerModule,
     MatSnackBarModule,
+    MatPaginatorModule,
+    MatSortModule,
   ],
   exports: [
     HttpClientModule,
@@ -50,6 +54,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatRadioModule,
     MatProgressSpinnerModule,
     MatSnackBarModule,
+    MatPaginatorModule,
+    MatSortModule,
   ],
 })
 export class SharedModule {}

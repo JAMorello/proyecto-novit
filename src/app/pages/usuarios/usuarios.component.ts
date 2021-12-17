@@ -1,9 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
 import { UsuariosService } from 'src/app/services/usuarios.service';
 import { NotifierService } from 'src/app/services/notifier.service';
 import { Usuario } from 'src/app/model/usuario';
 import { MatDialog } from '@angular/material/dialog';
 import { UsuarioFormDialogComponent } from 'src/app/components/usuario-form-dialog/usuario-form-dialog.component';
+import { MatSort } from '@angular/material/sort';
 @Component({
   selector: 'app-usuarios',
   templateUrl: './usuarios.component.html',
@@ -13,14 +16,18 @@ export class UsuariosComponent implements OnInit {
   loading: boolean = true;
   usuarios: Usuario[] = [];
   displayedColumns: string[] = [
-    'Nombre',
-    'Apellido',
-    'Username',
-    'Password',
-    'Email',
-    'Estado',
-    'Acciones',
+    'nombre',
+    'apellido',
+    'username',
+    'password',
+    'email',
+    'estado',
+    'acciones',
   ];
+  dataSource!: MatTableDataSource<any>;
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
   constructor(
     private _usuariosService: UsuariosService,
@@ -33,10 +40,18 @@ export class UsuariosComponent implements OnInit {
     this.getUsuarios();
   }
 
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
   getUsuarios() {
     this._usuariosService.getUsuarios().subscribe({
       next: (data) => {
         this.usuarios = data;
+        this.dataSource = new MatTableDataSource(this.usuarios);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
         this.loading = false;
       },
       error: (error) => {
