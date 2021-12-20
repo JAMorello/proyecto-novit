@@ -31,8 +31,20 @@ export class UsuarioFormDialogComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit() {
-    if (this.formValues.status === 'VALID') {
+    // Chequear si, al momento de editar el elemento, el usuario ingresó efectivamente datos nuevos
+    const checkEnteredData = {
+      ...this.data.payload,
+      ...this.formValues.value,
+    };
+    if (this.data.payload === checkEnteredData) {
+      this.notifierService.showNotification(
+        'No hay datos nuevos ingresados',
+        'error'
+      );
+      // Si hay datos nuevos, verificar que el estatus del formulario sea válido; si lo es, enviar datos
+    } else if (this.formValues.status === 'VALID') {
       this.matDialogRef.close(this.formValues);
+      // Tirar error si los datos ingresados son inválidos
     } else {
       this.notifierService.showNotification(
         'No has completado los campos correctamente',
