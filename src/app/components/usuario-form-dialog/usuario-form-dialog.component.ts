@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { NotifierService } from 'src/app/services/notifier.service';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-usuario-form-dialog',
@@ -36,7 +37,9 @@ export class UsuarioFormDialogComponent implements OnInit {
       ...this.data.payload,
       ...this.formValues.value,
     };
-    if (this.data.payload === checkEnteredData) {
+    checkEnteredData.estado = checkEnteredData.estado === 'true';
+
+    if (_.isEqual(this.data.payload, checkEnteredData)) {
       this.notifierService.showNotification(
         'No hay datos nuevos ingresados',
         'error'

@@ -1,8 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Rol } from 'src/app/model/rol';
 import { NotifierService } from 'src/app/services/notifier.service';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-small-form-dialog',
@@ -33,9 +33,13 @@ export class SmallFormDialogComponent implements OnInit {
 
   onSubmit() {
     // Chequear si, al momento de editar el elemento, el usuario ingresó efectivamente datos nuevos
+    const checkEnteredData = {
+      ...this.data.payload,
+      ...this.formValues.value,
+    };
+    checkEnteredData.estado = checkEnteredData.estado === 'true';
 
-    const checkEnteredData = { ...this.data.payload, ...this.formValues.value };
-    if (this.data.payload === checkEnteredData) {
+    if (_.isEqual(this.data.payload, checkEnteredData)) {
       this.notifierService.showNotification(
         'No hay datos nuevos ingresados',
         'error'
