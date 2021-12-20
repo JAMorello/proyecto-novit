@@ -15,4 +15,9 @@
       (deleteEvent)="deleteRol($event)"
     ></app-card>
   </div>
+  <app-warning-message
+    *ngIf="!loading && roles.length === 0"
+    title="Atención"
+    message="No hay datos para mostrar"
+  ></app-warning-message>
 </ng-template>
