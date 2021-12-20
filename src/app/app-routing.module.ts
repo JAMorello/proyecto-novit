@@ -6,7 +6,7 @@ import { RolesComponent } from './pages/roles/roles.component';
 import { UsuariosComponent } from './pages/usuarios/usuarios.component';
 
 const routes: Routes = [
-  { path: '', component: InicioComponent },
+  { path: '', pathMatch: 'full', component: InicioComponent },
   { path: 'usuarios', component: UsuariosComponent },
   { path: 'roles', component: RolesComponent },
   { path: 'recursos', component: RecursosComponent },
