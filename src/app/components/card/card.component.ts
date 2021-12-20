@@ -3,6 +3,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { SmallFormDialogComponent } from '../small-form-dialog/small-form-dialog.component';
 import { Rol } from 'src/app/model/rol';
 import { Recurso } from 'src/app/model/recurso';
+import { RecursosService } from 'src/app/services/recursos.service';
+import { RolesService } from 'src/app/services/roles.service';
+import { NotifierService } from 'src/app/services/notifier.service';
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
@@ -14,7 +17,12 @@ export class CardComponent implements OnInit {
   @Output() updateEvent = new EventEmitter<any>();
   @Output() deleteEvent = new EventEmitter<number>();
 
-  constructor(private matDialog: MatDialog) {}
+  constructor(
+    private matDialog: MatDialog,
+    private notifierService: NotifierService,
+    private _rolesService: RolesService,
+    private _recursosService: RecursosService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -37,35 +45,62 @@ export class CardComponent implements OnInit {
     this.deleteEvent.emit(id);
   }
 
-  openSmallDialog(payload: any) {
-    let dialogRef = this.matDialog.open(SmallFormDialogComponent, {
-      width: '500px',
-      height: '250px',
-      data: {
-        payload: payload,
-        title: this.origen === 'roles' ? 'Rol' : 'Recurso',
-        action: 'editar',
-      },
-    });
+  openSmallDialog(data: any) {
+    let dataLoaded: boolean = false;
+    let payload!: any;
+    const title = this.origen === 'roles' ? 'Rol' : 'Recurso';
+    if (title === 'Rol') {
+      this._rolesService.getRol(data.idRol).subscribe({
+        next: (data) => {
+          payload = data;
+          dataLoaded = true;
+        },
+        error: (error) => {
+          this.notifierService.showErrorNotification(error);
+        },
+      });
+    } else {
+      this._recursosService.getRecurso(data.idRecurso).subscribe({
+        next: (data) => {
+          payload = data;
+          dataLoaded = true;
+        },
+        error: (error) => {
+          this.notifierService.showErrorNotification(error);
+        },
+      });
+    }
 
-    dialogRef.afterClosed().subscribe((formValues) => {
-      if (formValues) {
-        if (this.origen === 'roles') {
-          const updatedRol: Rol = {
-            idRol: payload.idRol,
-            nombre: formValues.value.nombre,
-            estado: formValues.value.estado === 'true',
-          };
-          this.updateItem(updatedRol);
-        } else {
-          const updatedRecurso: Recurso = {
-            idRecurso: payload.idRecurso,
-            nombre: formValues.value.nombre,
-            estado: formValues.value.estado === 'true',
-          };
-          this.updateItem(updatedRecurso);
+    if (dataLoaded) {
+      let dialogRef = this.matDialog.open(SmallFormDialogComponent, {
+        width: '500px',
+        height: '250px',
+        data: {
+          payload: payload,
+          title: title,
+          action: 'editar',
+        },
+      });
+
+      dialogRef.afterClosed().subscribe((formValues) => {
+        if (formValues) {
+          if (this.origen === 'roles') {
+            const updatedRol: Rol = {
+              idRol: payload.idRol,
+              nombre: formValues.value.nombre,
+              estado: formValues.value.estado === 'true',
+            };
+            this.updateItem(updatedRol);
+          } else {
+            const updatedRecurso: Recurso = {
+              idRecurso: payload.idRecurso,
+              nombre: formValues.value.nombre,
+              estado: formValues.value.estado === 'true',
+            };
+            this.updateItem(updatedRecurso);
+          }
         }
-      }
-    });
+      });
+    }
   }
 }
