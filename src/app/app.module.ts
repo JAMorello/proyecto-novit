@@ -21,6 +21,8 @@ import { SectionHeaderComponent } from './components/section-header/section-head
 import { CardComponent } from './components/card/card.component';
 import { UsuarioFormDialogComponent } from './components/usuario-form-dialog/usuario-form-dialog.component';
 import { SmallFormDialogComponent } from './components/small-form-dialog/small-form-dialog.component';
+import { Page404Component } from './pages/page404/page404.component';
+import { WarningMessageComponent } from './components/warning-message/warning-message.component';
 
 // For global styles
 import { MAT_RADIO_DEFAULT_OPTIONS } from '@angular/material/radio';
@@ -36,6 +38,8 @@ import { MAT_RADIO_DEFAULT_OPTIONS } from '@angular/material/radio';
     CardComponent,
     UsuarioFormDialogComponent,
     SmallFormDialogComponent,
+    Page404Component,
+    WarningMessageComponent,
   ],
   imports: [
     BrowserModule,

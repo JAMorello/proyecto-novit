@@ -9,3 +9,9 @@ table {
 th {
   width: 14%;
 }
+
+.center {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
