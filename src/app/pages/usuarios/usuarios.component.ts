@@ -14,6 +14,7 @@ import { MatSort } from '@angular/material/sort';
 })
 export class UsuariosComponent implements OnInit {
   loading: boolean = true;
+  editLoading: boolean = false;
   usuarios: Usuario[] = [];
   displayedColumns: string[] = [
     'nombre',
@@ -113,42 +114,35 @@ export class UsuariosComponent implements OnInit {
   }
 
   openUsuarioDialog(data: Usuario) {
-    let dataLoaded: boolean = false;
-    let payload!: any;
     this._usuariosService.getUsuario(data.idUsuario).subscribe({
       next: (data) => {
-        payload = data;
-        dataLoaded = true;
+        let dialogRef = this.matDialog.open(UsuarioFormDialogComponent, {
+          width: '700px',
+          height: '400px',
+          data: {
+            payload: data,
+            action: 'editar',
+          },
+        });
+
+        dialogRef.afterClosed().subscribe((formValues) => {
+          if (formValues) {
+            const updatedUsuario: Usuario = {
+              idUsuario: data.idUsuario,
+              nombre: formValues.value.nombre,
+              apellido: formValues.value.apellido,
+              username: formValues.value.username,
+              password: formValues.value.password,
+              email: formValues.value.email,
+              estado: formValues.value.estado === 'true',
+            };
+            this.updateUsuario(updatedUsuario);
+          }
+        });
       },
       error: (error) => {
         this.notifierService.showErrorNotification(error);
       },
     });
-
-    if (dataLoaded) {
-      let dialogRef = this.matDialog.open(UsuarioFormDialogComponent, {
-        width: '700px',
-        height: '400px',
-        data: {
-          payload: payload,
-          action: 'editar',
-        },
-      });
-
-      dialogRef.afterClosed().subscribe((formValues) => {
-        if (formValues) {
-          const updatedUsuario: Usuario = {
-            idUsuario: payload.idUsuario,
-            nombre: formValues.value.nombre,
-            apellido: formValues.value.apellido,
-            username: formValues.value.username,
-            password: formValues.value.password,
-            email: formValues.value.email,
-            estado: formValues.value.estado === 'true',
-          };
-          this.updateUsuario(updatedUsuario);
-        }
-      });
-    }
   }
 }

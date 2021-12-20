@@ -7,7 +7,7 @@
         height="50px"
       />
     </div>
-    <mat-card-title>{{ data.nombre }}</mat-card-title>
+    <mat-card-title>{{ data.nombre | titlecase }}</mat-card-title>
     <mat-card-subtitle style="color: gray"
       >Estado: {{ data.estado }}</mat-card-subtitle
     >
@@ -16,7 +16,9 @@
     <button
       mat-flat-button
       class="edit-button edit-margin"
-      (click)="openSmallDialog(data)"
+      [class.spinner]="loading"
+      [disabled]="loading"
+      (click)="handleDialog(data)"
     >
       Editar
     </button>

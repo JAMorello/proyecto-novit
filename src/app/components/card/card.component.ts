@@ -16,6 +16,7 @@ export class CardComponent implements OnInit {
   @Input() data: any = { id: 0, nombre: '', estado: true };
   @Output() updateEvent = new EventEmitter<any>();
   @Output() deleteEvent = new EventEmitter<number>();
+  loading: boolean = false;
 
   constructor(
     private matDialog: MatDialog,
@@ -45,62 +46,63 @@ export class CardComponent implements OnInit {
     this.deleteEvent.emit(id);
   }
 
-  openSmallDialog(data: any) {
-    let dataLoaded: boolean = false;
-    let payload!: any;
+  handleDialog(data: any) {
+    this.loading = true;
     const title = this.origen === 'roles' ? 'Rol' : 'Recurso';
     if (title === 'Rol') {
       this._rolesService.getRol(data.idRol).subscribe({
         next: (data) => {
-          payload = data;
-          dataLoaded = true;
+          this.loading = false;
+          this.openSmallDialog(data, title);
         },
         error: (error) => {
+          this.loading = false;
           this.notifierService.showErrorNotification(error);
         },
       });
     } else {
       this._recursosService.getRecurso(data.idRecurso).subscribe({
         next: (data) => {
-          payload = data;
-          dataLoaded = true;
+          this.loading = false;
+          this.openSmallDialog(data, title);
         },
         error: (error) => {
+          this.loading = false;
           this.notifierService.showErrorNotification(error);
         },
       });
     }
+  }
 
-    if (dataLoaded) {
-      let dialogRef = this.matDialog.open(SmallFormDialogComponent, {
-        width: '500px',
-        height: '250px',
-        data: {
-          payload: payload,
-          title: title,
-          action: 'editar',
-        },
-      });
+  openSmallDialog(payload: any, title: string) {
+    let dialogRef = this.matDialog.open(SmallFormDialogComponent, {
+      width: '500px',
+      height: '250px',
+      data: {
+        payload: payload,
+        title: title,
+        action: 'editar',
+      },
+    });
 
-      dialogRef.afterClosed().subscribe((formValues) => {
-        if (formValues) {
-          if (this.origen === 'roles') {
-            const updatedRol: Rol = {
-              idRol: payload.idRol,
-              nombre: formValues.value.nombre,
-              estado: formValues.value.estado === 'true',
-            };
-            this.updateItem(updatedRol);
-          } else {
-            const updatedRecurso: Recurso = {
-              idRecurso: payload.idRecurso,
-              nombre: formValues.value.nombre,
-              estado: formValues.value.estado === 'true',
-            };
-            this.updateItem(updatedRecurso);
-          }
+    dialogRef.afterClosed().subscribe((formValues) => {
+      if (formValues) {
+        if (this.origen === 'roles') {
+          const updatedRol: Rol = {
+            idRol: payload.idRol,
+            nombre: formValues.value.nombre,
+            estado: formValues.value.estado === 'true',
+          };
+          this.updateItem(updatedRol);
+        } else {
+          const updatedRecurso: Recurso = {
+            idRecurso: payload.idRecurso,
+            nombre: formValues.value.nombre,
+            estado: formValues.value.estado === 'true',
+          };
+          this.updateItem(updatedRecurso);
         }
-      });
-    }
+      }
+    });
   }
 }
